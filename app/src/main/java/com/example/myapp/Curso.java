@@ -2,14 +2,19 @@ package com.example.myapp;
 
 import androidx.annotation.NonNull;
 
-public class Curso {
+import java.io.Serializable;
+
+public class Curso implements Serializable {
     private int id;
     private String title;
     private String category;
     private String img;
+
+    private String description;
     private String address;
     private int occupiedSlots;
     private int maxCapacity;
+
 
     public int getId() {
         return id;
@@ -26,6 +31,8 @@ public class Curso {
     public String getImg() {
         return img;
     }
+
+    public String getDescription() { return description; }
 
     public String getAddress() {
         return address;
@@ -54,6 +61,8 @@ public class Curso {
     public void setImg(String img) {
         this.img = img;
     }
+
+    public void setDescription(String description) { this.description = description; }
 
     public void setAddress(String address) {
         this.address = address;

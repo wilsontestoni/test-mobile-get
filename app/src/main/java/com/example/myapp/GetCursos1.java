@@ -55,6 +55,7 @@ public class GetCursos1 extends AppCompatActivity {
                                     curso.setTitle(cursoJson.getString("title"));
                                     curso.setCategory(cursoJson.getString("category"));
                                     curso.setImg(cursoJson.getString("img"));
+                                    curso.setDescription(cursoJson.getString("description"));
                                     curso.setAddress(cursoJson.getString("address"));
                                     curso.setTitle(cursoJson.getString("title"));
                                     curso.setOccupiedSlots(cursoJson.getInt("occupiedSlots"));
@@ -69,7 +70,7 @@ public class GetCursos1 extends AppCompatActivity {
                             }
                             RecyclerView recyclerView = findViewById(R.id.recyclerView);
                             recyclerView.setLayoutManager(new LinearLayoutManager(GetCursos1.this));
-                            CursoAdapter adapter = new CursoAdapter(cursos);
+                            CursoAdapter adapter = new CursoAdapter(GetCursos1.this, cursos);
                             recyclerView.setAdapter(adapter);
                         } else {
                             Log.d("Data","Sem Dados");

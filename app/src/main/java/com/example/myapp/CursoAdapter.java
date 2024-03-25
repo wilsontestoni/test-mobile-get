@@ -1,6 +1,8 @@
 package com.example.myapp;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,12 +19,13 @@ import java.util.List;
 
 public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.ViewHolder> {
 
+    private Context context;
     private List<Curso> cursos;
 
-    public CursoAdapter(List<Curso> cursos) {
+    public CursoAdapter(Context context, List<Curso> cursos) {
+        this.context = context;
         this.cursos = cursos;
     }
-
 
     @NonNull
     @Override
@@ -42,6 +45,15 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.ViewHolder> 
 
         // Use a referência do ImageView do ViewHolder para carregar a imagem
         Picasso.get().load(imageUrl).into(holder.courseImg);
+        holder.itemView.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ExpandedCourseScreen.class);
+                intent.putExtra("curso", curso);
+                context.startActivity(intent);
+            }
+        });
+
 
         holder.courseTitle.setText(curso.getTitle());
         holder.courseCategory.setText("Categoria: " + curso.getCategory());
@@ -65,5 +77,7 @@ public class CursoAdapter extends RecyclerView.Adapter<CursoAdapter.ViewHolder> 
             courseCategory = itemView.findViewById(R.id.courseCategory);
             courseAddress = itemView.findViewById(R.id.courseAddress);
         }
+
+
     }
 }
